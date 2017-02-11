@@ -19,7 +19,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.datetime.now()
-        self.save()
+        models.storage.save()
 
     def to_json(self):
         self.created_at = datetime.datetime.isoformat(self.created_at)
