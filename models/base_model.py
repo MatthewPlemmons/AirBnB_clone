@@ -3,7 +3,7 @@ import uuid
 import datetime
 import models
 
-class BaseModel:
+class BaseModel():
     """BaseModel Class"""
     def __init__(self, *args, **kwargs):
         if len(args) > 0:
@@ -31,3 +31,7 @@ class BaseModel:
 
     def __str__(self):
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
+
+
+new_inst = BaseModel()
+print(new_inst.__class__())
