@@ -2,6 +2,11 @@
 from models.base_model import BaseModel
 
 class Review(BaseModel):
+    """ Review Class
+
+    Holds three public attributes: 'place_id', 'user_id', 'text'.
+    """
+
     place_id = ""
     user_id = ""
     text = ""

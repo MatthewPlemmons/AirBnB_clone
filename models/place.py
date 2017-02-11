@@ -2,6 +2,13 @@
 from models.base_model import BaseModel
 
 class Place(BaseModel):
+    """ Place Class
+
+    Holds thirteen public attributes: 'city_id', 'user_id', 'name',
+    'description', 'number_rooms', 'number_bathrooms', 'max_guest',
+    'price_by_night', 'number_rooms', 'latitude', 'longitude', 'amentities'.
+    """
+
     city_id = ""
     user_id = ""
     name = ""
