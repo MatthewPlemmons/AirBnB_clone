@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-import cmd, sys, os
-
+import cmd
+import sys
+import os
 
 
 class Console(cmd.Cmd):
     """ Console Interpreter"""
     prompt = "(hbnb)"
-
-    def do_hist(self, args):
-        """Prints history of commands entered"""
-        print (self._hist)
 
     def do_exit(self, args):
         """Exits the  Console"""
@@ -31,11 +28,9 @@ class Console(cmd.Cmd):
         """Quit command to exit the program"""
         raise SystemExit
 
-    def preloop(self):
-        cmd.Cmd.preloop(self)
-        self.__hist = []
-        self.__locals = {}
-        self.__globals = {}
+    def emptyline(self):
+        '''Prevents repeat of previous input.'''
+        pass
 
 if __name__ == "__main__":
     prompt = Console()
