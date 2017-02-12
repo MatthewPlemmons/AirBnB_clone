@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 
-class Place(BaseModel):
+class Amenity(BaseModel):
     """ Place Class
 
     Hold one public attribute: 'name'.

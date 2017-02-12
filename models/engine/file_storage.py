@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-import json, models, uuid
+import json
+import uuid
+import os
+import models
 
 class FileStorage:
 
@@ -14,14 +17,30 @@ class FileStorage:
 
     def save(self):
         new_dict = {}
-        for key in self.__objects[keys]:
+        for key in self.__objects.keys():
             new_dict[key] = self.__objects[key].to_json()
-        with open(__file_path, "w+") as fh:
-            fh.write(dumps(new_dict))
+        with open(FileStorage.__file_path, "w+") as fd:
+            json.dump(new_dict, fd)
 
     def reload(self):
         if os.path.isfile(FileStorage.__file_path) == True:
             with open(FileStorage.__file_path, "r+") as fd:
-               json_dict = json.load(fd)
-               for key in json_dict.keys():
-                   cls = json_dict[key]
+                json_dict = json.load(fd)
+                print(json_dict)
+                for key in json_dict.keys():
+                    value = json_dict[key]
+                    class_name = value["__class__"]
+                    if "BaseModel" in class_name:
+                        FileStorage.__objects[key] = BaseModel(json_dict[key])
+                    if "User" in class_name:
+                        FileStorage.__objects[key] = User(json_dict[key])
+                    if "State" in class_name:
+                        FileStorage.__objects[key] = State(json_dict[key])
+                    if "City" in class_name:
+                        FileStorage.__objects[key] = City(json_dict[key])
+                    if "Amenity" in class_name:
+                        FileStorage.__objects[key] = Amenity(json_dict[key])
+                    if "Place" in class_name:
+                        FileStorage.__objects[key] = Place(json_dict[key])
+                    if "Review" in class_name:
+                        FileStorage.__objects[key] = Review(json_dict[key])

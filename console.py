@@ -2,7 +2,7 @@
 import cmd
 import sys
 import os
-
+import models
 
 class Console(cmd.Cmd):
     """ Console Interpreter"""
@@ -32,6 +32,20 @@ class Console(cmd.Cmd):
         '''Prevents repeat of previous input.'''
         pass
 
+    def do_create(self, args):
+        model = {"BaseModel" : models.BaseModel(), "User" : models.User(),
+                 "State": models.State(), "City" : models.City(),
+                 "Amenity" : models.Amenity(), "Place" : models.Place(),
+                 "Review" : models.Review()}
+        if len(args) < 1:
+            print("** class name missing **")
+        else:
+            if args in model.keys():
+                value = model[args]
+                new = value
+                new.save()
+                print(new.id)
+
 if __name__ == "__main__":
-    prompt = Console()
-    prompt.cmdloop()
+    prompts = Console()
+    prompts.cmdloop()
