@@ -10,7 +10,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        return (__objects)
+        return (FileStorage.__objects)
 
     def new(self, obj):
         FileStorage.__objects[obj.id] = obj
@@ -31,16 +31,16 @@ class FileStorage:
                     value = json_dict[key]
                     class_name = value["__class__"]
                     if "BaseModel" in class_name:
-                        FileStorage.__objects[key] = BaseModel(json_dict[key])
+                        FileStorage.__objects[key] = models.BaseModel(json_dict[key])
                     if "User" in class_name:
-                        FileStorage.__objects[key] = User(json_dict[key])
+                        FileStorage.__objects[key] = models.User(json_dict[key])
                     if "State" in class_name:
-                        FileStorage.__objects[key] = State(json_dict[key])
+                        FileStorage.__objects[key] = models.State(json_dict[key])
                     if "City" in class_name:
-                        FileStorage.__objects[key] = City(json_dict[key])
+                        FileStorage.__objects[key] = models.City(json_dict[key])
                     if "Amenity" in class_name:
-                        FileStorage.__objects[key] = Amenity(json_dict[key])
+                        FileStorage.__objects[key] = models.Amenity(json_dict[key])
                     if "Place" in class_name:
-                        FileStorage.__objects[key] = Place(json_dict[key])
+                        FileStorage.__objects[key] = models.Place(json_dict[key])
                     if "Review" in class_name:
-                        FileStorage.__objects[key] = Review(json_dict[key])
+                        FileStorage.__objects[key] = models.Review(json_dict[key])
