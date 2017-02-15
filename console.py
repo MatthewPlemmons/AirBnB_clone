@@ -4,6 +4,7 @@ import sys
 import os
 import models
 
+
 class Console(cmd.Cmd):
     """ Console Interpreter"""
     prompt = "(hbnb)"
@@ -36,10 +37,10 @@ class Console(cmd.Cmd):
 
     def do_create(self, args):
         """ Creates an instance of a goven model """
-        model = {"BaseModel" : models.BaseModel(), "User" : models.User(),
-                 "State": models.State(), "City" : models.City(),
-                 "Amenity" : models.Amenity(), "Place" : models.Place(),
-                 "Review" : models.Review()}
+        model = {"BaseModel": models.BaseModel(), "User": models.User(),
+                 "State": models.State(), "City": models.City(),
+                 "Amenity": models.Amenity(), "Place": models.Place(),
+                 "Review": models.Review()}
         if len(args) < 1:
             print("** class name missing **")
         else:
