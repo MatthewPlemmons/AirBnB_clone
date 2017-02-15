@@ -2,7 +2,10 @@
 import cmd
 import sys
 import os
-import models
+from models import *
+"""
+This is the HBNB console module
+"""
 
 
 class Console(cmd.Cmd):

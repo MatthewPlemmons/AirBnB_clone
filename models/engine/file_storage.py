@@ -2,7 +2,7 @@
 import json
 import uuid
 import os
-import models
+from models import *
 
 class FileStorage:
 
@@ -17,8 +17,9 @@ class FileStorage:
 
     def save(self):
         new_dict = {}
-        for key in self.__objects.keys():
-            new_dict[key] = self.__objects[key].to_json()
+        for key in FileStorage.__objects.keys():
+            new_dict[key] = FileStorage.__objects[key].to_json()
+
         with open(FileStorage.__file_path, "w+") as fd:
             json.dump(new_dict, fd)
 
@@ -26,7 +27,6 @@ class FileStorage:
         if os.path.isfile(FileStorage.__file_path) == True:
             with open(FileStorage.__file_path, "r+") as fd:
                 json_dict = json.load(fd)
-                print(json_dict)
                 for key in json_dict.keys():
                     value = json_dict[key]
                     class_name = value["__class__"]
