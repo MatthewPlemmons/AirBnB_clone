@@ -31,10 +31,11 @@ class Console(cmd.Cmd):
         raise SystemExit
 
     def emptyline(self):
-        '''Prevents repeat of previous input.'''
+        """Prevents repeat of previous input."""
         pass
 
     def do_create(self, args):
+        """ Creates an instance of a goven model """
         model = {"BaseModel" : models.BaseModel(), "User" : models.User(),
                  "State": models.State(), "City" : models.City(),
                  "Amenity" : models.Amenity(), "Place" : models.Place(),
@@ -49,6 +50,8 @@ class Console(cmd.Cmd):
                 print(new.id)
 
     def do_show(self, args):
+        """ Prints the string representation of an instance based on the class
+        name and id """
         args = args.split()
         if len(args) <= 0:
             print("** class name missing **")
@@ -64,6 +67,7 @@ class Console(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
+        """ Deletes an instance based on the class name and id """
         args = args.split()
         if len(args[0]) == 0:
             print("** class name missing **")
@@ -92,6 +96,8 @@ class Console(cmd.Cmd):
             print(show_list)
 
     def do_update(self, args):
+        """ Updates an instance based on the class name and id by adding or
+        updating attribute """
         class_names
         args = args.split()
         if len(args) <= 0:
