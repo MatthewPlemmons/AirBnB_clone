@@ -24,7 +24,7 @@ class FileStorage:
             json.dump(new_dict, fd)
 
     def reload(self):
-        if os.path.isfile(FileStorage.__file_path) == True:
+        try:
             with open(FileStorage.__file_path, "r+") as fd:
                 json_dict = json.load(fd)
                 for key in json_dict.keys():
@@ -44,3 +44,5 @@ class FileStorage:
                         FileStorage.__objects[key] = models.Place(json_dict[key])
                     if "Review" in class_name:
                         FileStorage.__objects[key] = models.Review(json_dict[key])
+        except Exception as e:
+            pass
