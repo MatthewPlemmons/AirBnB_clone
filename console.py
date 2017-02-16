@@ -52,17 +52,22 @@ class Console(cmd.Cmd):
                 new = value
                 new.save()
                 print(new.id)
+            else:
+                print("** class doesn't exist **")
 
     def do_show(self, args):
         """ Prints the string representation of an instance based on the class
         name and id """
         args = args.split()
-        if len(args) <= 0:
+        if len(args) == 0:
             print("** class name missing **")
-        if len(args) <= 1:
+            return
+        if len(args) == 1:
             print("** instance id missing **")
-        if args[0] not in class_name:
+            return
+        if args[0] not in Console.class_names:
             print("** class doesn't exist **")
+            return
         else:
             show_all = storage.all()
             for key_id in show_all.keys():
@@ -72,13 +77,17 @@ class Console(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Delete an instance based on the class name and id"""
-        args = args.split()
-        if len(args[0]) == 0:
+
+        args = arg.split()
+        if len(args) == 0:
             print("** class name missing **")
-        if len(args[1]) == 0:
+            return
+        if len(args) == 1:
             print("** instance id missing **")
-        if args[0] not in class_name:
+            return
+        if args[0] not in Console.class_names:
             print("** class doesn't exist **")
+            return
         show_all = storage.all()
         for key_id in show_all.keys():
             if key_id == args[1]:
@@ -91,11 +100,11 @@ class Console(cmd.Cmd):
         store = models.storage.all()
 
         args = args.split()
-        if args[0] not in class_name:
+        if args[0] not in Console.class_names:
             print("** class doesn't exist **")
         else:
-            for key in self.store.keys():
-                if self.store[key].__class__.__name__ == args[0]:
+            for key in store.keys():
+                if store[key].__class__.__name__ == args[0]:
                     show_list.append(str(store[key]))
             print(show_list)
 
@@ -121,5 +130,4 @@ class Console(cmd.Cmd):
                 print("** no instance found **")
 
 if __name__ == "__main__":
-    prompts = Console()
-    prompts.cmdloop()
+    Console().cmdloop()
