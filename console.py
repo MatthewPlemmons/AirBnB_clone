@@ -3,23 +3,22 @@ import cmd
 import sys
 import os
 from models import *
-"""
-This is the HBNB console module
-"""
+
+"""Shell-like interpreter to handle commandline instructions"""
 
 
 class Console(cmd.Cmd):
-    """ Console Interpreter"""
-    prompt = "(hbnb)"
+    """Console Interpreter"""
+    prompt = "(hbnb) "
     class_names = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                    "Review"]
 
     def do_exit(self, args):
-        """Exits the  Console"""
+        """Exit the interpreter"""
         return (-1)
 
     def do_EOF(self, args):
-        """Exits system with end of file character 'control' + 'c'"""
+        """Exit interpreter by entering 'EOF' or pressing Crtl-D"""
         return (self.do_exit(args))
 
     def do_shell(self, args):
@@ -27,11 +26,11 @@ class Console(cmd.Cmd):
         os.system(args)
 
     def do_help(self, args):
-        """Gets help command if 'help' or '?' is passed"""
+        """Get help command if 'help' or '?' is entered"""
         cmd.Cmd.do_help(self, args)
 
     def do_quit(self, args):
-        """Quit command to exit the program"""
+        """Exit the interpreter"""
         raise SystemExit
 
     def emptyline(self):
@@ -71,7 +70,7 @@ class Console(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        """ Deletes an instance based on the class name and id """
+        """Delete an instance based on the class name and id"""
         args = args.split()
         if len(args[0]) == 0:
             print("** class name missing **")
@@ -100,8 +99,8 @@ class Console(cmd.Cmd):
             print(show_list)
 
     def do_update(self, args):
-        """ Updates an instance based on the class name and id by adding or
-        updating attribute """
+        """Update an instance based on the class name and id by adding or
+        updating attribute"""
         class_names
         args = args.split()
         if len(args) <= 0:
@@ -119,6 +118,7 @@ class Console(cmd.Cmd):
                 models.storage.save()
             else:
                 print("** no instance found **")
+
 if __name__ == "__main__":
     prompts = Console()
     prompts.cmdloop()
