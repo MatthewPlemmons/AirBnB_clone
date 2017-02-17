@@ -40,10 +40,12 @@ class Console(cmd.Cmd):
 
     def do_create(self, args):
         """ Creates an instance of a goven model """
+
         model = {"BaseModel": models.BaseModel(), "User": models.User(),
                  "State": models.State(), "City": models.City(),
                  "Amenity": models.Amenity(), "Place": models.Place(),
                  "Review": models.Review()}
+
         if len(args) < 1:
             print("** class name missing **")
         else:
@@ -57,6 +59,7 @@ class Console(cmd.Cmd):
 
     def do_show(self, args):
         """Print the string representation of an instance"""
+
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -96,14 +99,17 @@ class Console(cmd.Cmd):
     def do_all(self, args):
         """Print string representation of Class instances"""
 
-        if args not in self.class_names:
+        show_list = []
+        store = models.storage.all()
+        args = args.split()
+        if args[0] not in self.class_names:
             print("** class doesn't exist **")
+            return
         else:
-            all_instances = storage.all()
-            for i in all_instances.keys():
-                if args == all_instances[i].__class__.__name__:
-                    print(str(all_instances[i]))
-
+            for key in store.keys():
+                if store[key].__class__.__name__ == args[0]:
+                    show_list.append(str(store[key]))
+            print(show_list)
 
     def do_update(self, args):
         """Add or change instance attributes"""
@@ -118,12 +124,11 @@ class Console(cmd.Cmd):
         if len(args) <= 3:
             print("** value missing **")
         stored_obj = models.storage.all()
-        for obj_id in stored_obj.keys():
-            if obj_id == args[1]:
-                setattr(stored_obj[obj_id], args[2], args[3])
-                models.storage.save()
-            else:
-                print("** no instance found **")
+        if args[1] in stored_obj.keys():
+            setattr(stored_obj[args[1]], args[2], args[3])
+            models.storage.save()
+        else:
+            print("** no instance found **")
 
 if __name__ == "__main__":
     Console().cmdloop()
