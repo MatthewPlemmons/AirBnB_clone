@@ -67,11 +67,10 @@ class Console(cmd.Cmd):
         if args[0] not in Console.class_names:
             print("** class doesn't exist **")
             return
+        all_instances = storage.all()
+        if args[1] in all_instances:
+            print(all_instances[args[1]])
         else:
-            show_all = storage.all()
-            for key_id in show_all.keys():
-                if key_id == args[1]:
-                    print(show_all[key_id])
             print("** no instance found **")
 
     def do_destroy(self, arg):
