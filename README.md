@@ -14,7 +14,8 @@ The hbnb console is a command interpreter for managing data and objects specific
 Getting the hbnb console up and running is simple. Just run the console from
  your terminal to begin.
 
-```$ ./console.py
+```
+$ ./console.py
 (hbnb)
 ```
 The (hbnb) prompt indicates the console is ready for commands! For a list of
