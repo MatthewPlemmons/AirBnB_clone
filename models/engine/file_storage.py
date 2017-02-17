@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import json
-import uuid
+import datetime
 import os
-from models import *
+import models
 
 class FileStorage:
 
@@ -16,16 +16,19 @@ class FileStorage:
         FileStorage.__objects[obj.id] = obj
 
     def save(self):
+
+        #import pdb; pdb.set_trace()
+
         new_dict = {}
         for key in FileStorage.__objects.keys():
             new_dict[key] = FileStorage.__objects[key].to_json()
-
-        with open(FileStorage.__file_path, "w+") as fd:
-            json.dump(new_dict, fd)
+            # Maybe turn datetime obj in new_dict to str here
+        with open(FileStorage.__file_path, "w", encoding="UTF-8") as f:
+            json.dump(new_dict, f)
 
     def reload(self):
         try:
-            with open(FileStorage.__file_path, "r+") as fd:
+            with open(FileStorage.__file_path, "r", encoding="UTF-8") as fd:
                 json_dict = json.load(fd)
                 for key in json_dict.keys():
                     value = json_dict[key]
