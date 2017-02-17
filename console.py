@@ -56,8 +56,7 @@ class Console(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, args):
-        """ Prints the string representation of an instance based on the class
-        name and id """
+        """Print the string representation of an instance"""
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -76,9 +75,7 @@ class Console(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Delete an instance based on the class name and id"""
-
-        #import pdb; pdb.set_trace()
+        """Delete an instance"""
 
         args = arg.split()
         if len(args) == 0:
@@ -111,9 +108,8 @@ class Console(cmd.Cmd):
             print(show_list)
 
     def do_update(self, args):
-        """Update an instance based on the class name and id by adding or
-        updating attribute"""
-        class_names
+        """Add or change instance attributes"""
+
         args = args.split()
         if len(args) <= 0:
             print("** class name missing **")
