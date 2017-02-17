@@ -47,13 +47,13 @@ class Console(cmd.Cmd):
         if len(args) < 1:
             print("** class name missing **")
         else:
-            if args in model.keys():
-                value = model[args]
-                new = value
-                new.save()
-                print(new.id)
+            if args in model:
+                model[args].save()
+                print(model[args].id)
+                return
             else:
                 print("** class doesn't exist **")
+                return
 
     def do_show(self, args):
         """Print the string representation of an instance"""
