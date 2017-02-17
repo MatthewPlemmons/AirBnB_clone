@@ -94,17 +94,16 @@ class Console(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, args):
-        show_list = []
-        store = models.storage.all()
+        """Print string representation of Class instances"""
 
-        args = args.split()
-        if args[0] not in Console.class_names:
+        if args not in self.class_names:
             print("** class doesn't exist **")
         else:
-            for key in store.keys():
-                if store[key].__class__.__name__ == args[0]:
-                    show_list.append(str(store[key]))
-            print(show_list)
+            all_instances = storage.all()
+            for id in all_instances.keys():
+                if args == all_instances[id].__class__.__name__:
+                    print(str(all_instances[id]))
+
 
     def do_update(self, args):
         """Add or change instance attributes"""
