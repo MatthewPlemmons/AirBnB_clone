@@ -100,9 +100,9 @@ class Console(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             all_instances = storage.all()
-            for id in all_instances.keys():
-                if args == all_instances[id].__class__.__name__:
-                    print(str(all_instances[id]))
+            for i in all_instances.keys():
+                if args == all_instances[i].__class__.__name__:
+                    print(str(all_instances[i]))
 
 
     def do_update(self, args):
