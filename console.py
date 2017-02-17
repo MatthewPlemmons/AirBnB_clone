@@ -78,6 +78,8 @@ class Console(cmd.Cmd):
     def do_destroy(self, arg):
         """Delete an instance based on the class name and id"""
 
+        #import pdb; pdb.set_trace()
+
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -88,12 +90,12 @@ class Console(cmd.Cmd):
         if args[0] not in Console.class_names:
             print("** class doesn't exist **")
             return
-        show_all = storage.all()
-        for key_id in show_all.keys():
-            if key_id == args[1]:
-                del show_all[key_id]
-                models.storage.save()
-        print("** no instance found **")
+        all_model_ids = storage.all()
+        if args[1] in list(all_model_ids):
+            del all_model_ids[args[1]]
+            models.storage.save()
+        else:
+            print("** no instance found **")
 
     def do_all(self, args):
         show_list = []
