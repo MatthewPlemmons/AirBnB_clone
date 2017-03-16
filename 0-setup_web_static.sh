@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sets up web servers.
+# Sets up nginx and directories to serve files from.
 sudo apt-get -y install nginx
 mkdir -p /data/web_static/releases/test
 mkdir -p /data/web_static/shared
