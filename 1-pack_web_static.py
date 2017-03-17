@@ -1,14 +1,15 @@
 #!/usr/bin/python3
-"""fabfile"""
 from fabric.api import local
-from datetime import datetime
+from time import strftime
+
 
 def do_pack():
-    local('mkdir -p versions')
-    time = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S')
-    archive = 'versions/web_static_{}.tgz'.format(time)
+    """Archive the web_static directory."""
     try:
-        local('tar -cvzf {} web_static'.format(archive))
+        local('mkdir -p versions')
+        current_time = strftime('%Y%m%d%H%M%S')
+        archive_name = 'versions/web_static_{}.tgz'.format(current_time)
+        local('tar -cvzf {} web_static'.format(archive_name))
+        return archive_name
     except:
         return None
-    return archive
