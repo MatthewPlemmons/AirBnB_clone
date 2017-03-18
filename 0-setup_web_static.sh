@@ -8,8 +8,8 @@ ln -fs /data/web_static/releases/test/ /data/web_static/current
 chown -R ubuntu:ubuntu /data/
 
 config="server {
-    location /hbnb_static/index.html {
-	alias /data/web_static/current/index.html;
+    location /hbnb_static/ {
+	alias /data/web_static/current/;
     }
 }"
 
