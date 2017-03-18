@@ -26,7 +26,7 @@ def do_deploy(archive_path):
     try:
         basename = os.path.basename(archive_path)
         archive_name = os.path.splitext(basename)[0]
-        put("versions/{}".format(archive_path), "/tmp/{}".format(basename))
+        put("{}".format(archive_path), "/tmp/{}".format(basename))
         run("mkdir -p /data/web_static/releases/{}".format(archive_name))
         with cd("/data/web_static/releases"):
             run("tar -xzf /tmp/{} -C {}".format(basename, archive_name))
