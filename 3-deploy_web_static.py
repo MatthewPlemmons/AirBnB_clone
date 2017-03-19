@@ -30,12 +30,16 @@ def do_deploy(archive_path):
         put("{}".format(archive_path), "/tmp/{}".format(basename))
         sudo("mkdir -p /data/web_static/releases/{}".format(archive_name))
         data_dir = '/data/web_static/releases'
-        sudo("tar -xzf /tmp/{} -C {}/{}".format(basename, data_dir, archive_name))
+        sudo("tar -xzf /tmp/{} -C {}/{}".format(
+            basename, data_dir, archive_name))
         sudo("rm /tmp/{}".format(basename))
-        sudo("mv {}/{}/web_static/* {}/{}".format(data_dir, archive_name, data_dir, archive_name))
-        sudo("rm -rf {}/{}/web_static".format(data_dir, archive_name))
+        sudo("mv {}/{}/web_static/* {}/{}".format(
+            data_dir, archive_name, data_dir, archive_name))
+        sudo("rm -rf {}/{}/web_static".format(
+            data_dir, archive_name))
         sudo("rm -rf /data/web_static/current")
-        sudo("ln -s {}/{}/ /data/web_static/current".format(data_dir, archive_name))
+        sudo("ln -s {}/{}/ /data/web_static/current".format(
+            data_dir, archive_name))
         print("New version deployed!")
         return True
     except Exception as e:
