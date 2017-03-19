@@ -35,8 +35,9 @@ def do_deploy(archive_path):
             sudo("mv {}/web_static/* {}".format(archive_name, archive_name))
             sudo("rm -rf {}/web_static".format(archive_name))
             sudo("rm -rf ../current")
-            sudo("ln -s {} ../current".format(archive_name))
+            sudo("ln -s {}/ /data/web_static/current".format(archive_name))
         print("New version deployed!")
+        return True
     except Exception as e:
         print("Error: {}\nUnable to deploy new version.".format(e))
         return False
