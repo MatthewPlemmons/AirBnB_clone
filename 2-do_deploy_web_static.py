@@ -45,12 +45,3 @@ def do_deploy(archive_path):
     except Exception as e:
         print("Error: {}\nUnable to deploy new version.".format(e))
         return False
-
-
-def deploy():
-    try:
-        archive = do_pack()
-        result = do_deploy(archive)
-        return result
-    except:
-        return False
