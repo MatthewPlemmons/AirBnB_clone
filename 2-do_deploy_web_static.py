@@ -3,8 +3,8 @@ from fabric.api import *
 from time import strftime
 import os.path
 
-env.hosts = ['107.20.68.230:34181']
-env.user = 'root'
+env.hosts = ['54.164.149.121', '52.201.184.69']
+env.user = 'ubuntu'
 
 
 def do_pack():
